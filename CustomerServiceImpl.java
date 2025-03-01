@@ -16,7 +16,7 @@ import jakarta.websocket.server.ServerEndpoint;
 public  class CustomerServiceImpl implements CustomerService
 {
 
-	CustomerDao customerDao;//you can use autowire or construtor injection to create and manage its object by spring
+	CustomerDao customerDao;
 	public CustomerServiceImpl(CustomerDao customerDao) {
 		super();
 		this.customerDao = customerDao;
@@ -25,22 +25,20 @@ public  class CustomerServiceImpl implements CustomerService
 	public String insertCustomer(Customer customer)
 	
 	{
-		//here you can just call dao method to insert but first you need to create object of Dao
-		//obj banayega kon spring boot
+		
 		
 		return customerDao.insertCustomer(customer);
 	}
 	@Override
 	public List<Customer> getCustomersList()
 	{
-		//here you can just call dao method to get kiuki dao me hamne pahle hi wo method bana diya using session method but first you need to create object of Dao
-				//obj banayega kon spring boot
+		
 		
 		return customerDao.getCustomersList();
 	}
 	@Override
 	public Customer getCustomerById(int id) {
-		//Dao me Jo getCustomerId Method hai usko call krlo or wo databse se call krke return krega using session object
+		
 		
 		return customerDao.getCustomerById(id);
 	}
