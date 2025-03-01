@@ -7,7 +7,7 @@ import com.CustomerRelationshipManagement.entity.Customer;
 public interface CustomerService 
 {
   
-	String insertCustomer(Customer customer);//Dao se string return ho rha hai "customer insertion success" to yha se bhi whi return hoga n;
+	String insertCustomer(Customer customer);
 	
 	List<Customer> getCustomersList();
 	
