@@ -29,15 +29,15 @@ public class CustomerDao
 	public String insertCustomer(Customer customer)
 	{
 		Session session = sf.openSession();
-		//for insert , update and delete --> we need to use transaction
-		Transaction tr = session.beginTransaction();
-		//save method of session
-		session.persist(customer); //save=persist //save --> data will go to database from Dao
-		tr.commit();//we need to commit to save our data.
 		
-		return "customer insert successfully";// then this message from database to dao.or repository
+		Transaction tr = session.beginTransaction();
+		
+		session.persist(customer); 
+		tr.commit();
+		
+		return "customer insert successfully";
 	}
-	 //to get all customers in table
+	
 	public List<Customer> getCustomersList()
 	{
 		 Session session = sf.openSession();
@@ -69,7 +69,7 @@ public class CustomerDao
 		Session session = sf.openSession();
 		Transaction tr = session.beginTransaction();
 		Customer customer = session.get(Customer.class, id);
-		//session.delete(customer);
+	
 		session.remove(customer);
 		tr.commit();
 		session.close();
