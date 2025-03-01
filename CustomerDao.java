@@ -18,12 +18,9 @@ import jakarta.persistence.Query;
 @Repository
 public class CustomerDao 
 {
-//	databse code using hibernate 
-//	@Autowired
-// it is better to use constructor rather than @Autowired for injection 
+
 	SessionFactory sf;
-	 //we have just created reff of session factory because we need session why -->session has some methods like save etc.
-	//kiska session hai hibernate ka hai
+
     public CustomerDao(SessionFactory sf) {
 		super();
 		this.sf = sf;
@@ -47,14 +44,12 @@ public class CustomerDao
 		 return session.createQuery("from Customer",Customer.class).list();
 		 
 	}
-	//to get one customer by id
+	
 	public Customer getCustomerById(int id)
 	{
 		Session session = sf.openSession();
 		return session.get(Customer.class, id);
-		//get or load 
-		//get-->it will return null if object not found in db
-		//load-->if not found --> return objectNotfoundException
+		
 	}
 	
 	public String updateCustomer(Customer customer)
@@ -99,7 +94,7 @@ public class CustomerDao
 	{
 		Session session = sf.openSession();
 		
-		//String hql= "from Customers c where c.firstname=firstname";
+		
 		org.hibernate.query.Query<Customer> customers =session.createQuery("from Customer c where c.firstname=:firstname",Customer.class);
 		customers.setParameter("firstname", firstname);
 		List<Customer> list = customers.list();
@@ -111,7 +106,7 @@ public class CustomerDao
 	{
 		Session session = sf.openSession();
 		
-		//String hql= "from Customers c where c.firstname=firstname";
+	
 		org.hibernate.query.Query<Customer> customers =session.createQuery("from Customer c where c.age<:age",Customer.class);
 		customers.setParameter("age", age);
 		List<Customer> list = customers.list();
@@ -122,7 +117,6 @@ public class CustomerDao
 	{
 		Session session = sf.openSession();
 		
-		//String hql= "from Customers c where c.firstname=firstname";
 		org.hibernate.query.Query<Customer> customers =session.createQuery("from Customer c where c.age=:age",Customer.class);
 		customers.setParameter("age", age);
 		List<Customer> list = customers.list();
