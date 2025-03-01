@@ -20,23 +20,21 @@ public class CustomerController
 {
 	
 
-	//controller me hmm kyaa krte hai service ke method ko call krte hai
+
 	
 	CustomerService customerService;
-	//we have just created reference of of it but the actual object injection of customer service in this class
-	//is done by constructor injection which means it will be done by spring
+
 	public CustomerController(CustomerService customerService) {
 		super();
 		this.customerService = customerService;
 	}
 	
-	//now yha se hmm kya return bhejenge jo msg aa rha hai whi to client ko forward krnge -->String
+
 	@PostMapping("/insert")
 	public String insertCustomer(@RequestBody Customer customer)
 	{
-		//postman will not send normal object of customer above 
-		return customerService.insertCustomer(customer);//returns to client which is returned by service layer
-		//this return msg will go to client(postman)
+		return customerService.insertCustomer(customer);
+		
 	}
       @GetMapping
 	public List<Customer> getCustomersList()
@@ -44,7 +42,7 @@ public class CustomerController
 		List<Customer> list = customerService.getCustomersList();
 		return list;
 	}
-      @GetMapping("/{id}")  //because id is now not just a normal variable we are passing it through url so we need to pass the path
+      @GetMapping("/{id}")
       public Customer getCustomerById(@PathVariable int id)
       {
     	  return customerService.getCustomerById(id);
